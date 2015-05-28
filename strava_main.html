@@ -37,12 +37,17 @@ table tr:nth-child(even) {
 
 </div>
     
-
-
 <script>
+/**
+ * To decrypt following message use https://www.infoencrypt.com
+<Encrypted>
+iL11bUU/Zs90uiX3KXFqZPH39Ff77URvuPngk62KjLIkey/56j7iyWNufy3nj2x///U1dIdtwjVCwIro
+352rBi7nlMylNaU3qxCBUmRbnHa8TWNnP+R8o5p0QPKGgKalj85eFamIia85tyjP+8hMpg==
+</Encrypted>
+ * */
+
 function customersController($scope,$http) {
 
- 
     $.getJSON('https://www.strava.com/api/v3/athlete/activities?access_token=KEYYREPLACE&callback=?', function(data) {
         $scope.$apply(function(){
                     console.log(data);
@@ -51,8 +56,6 @@ function customersController($scope,$http) {
                 });                         
 }
    
-    
-
 </script>
 
 <script src="angular.min.js"></script>
