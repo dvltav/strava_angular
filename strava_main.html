@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd)	{
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="customersController"> 
+
+<table>
+    <tr>
+    <th> Date</th>
+    <th> Miles</th>
+    <th>Time</th>
+    <th>Pace</th>
+    </tr>
+  <tr ng-repeat="x in names">
+    <td>   {{ (x.start_date | date:'MM/dd/yyyy')}} </td>
+    <td> {{ ((x.distance/1000)/1.6 | number:2) }} </td>
+    <td>{{ (x.moving_time/60 | number:2) }} </td>
+    <td>{{((x.moving_time/60) / ((x.distance/1000)/1.6)) | number:2}} </td>
+   
+  </tr>
+</table>
+
+</div>
+    
+
+
+<script>
+function customersController($scope,$http) {
+
+ 
+    $.getJSON('https://www.strava.com/api/v3/athlete/activities?access_token=KEYYREPLACE&callback=?', function(data) {
+        $scope.$apply(function(){
+                    console.log(data);
+                    $scope.names = data;
+             });
+                });                         
+}
+   
+    
+
+</script>
+
+<script src="angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+</body>
+</html>
